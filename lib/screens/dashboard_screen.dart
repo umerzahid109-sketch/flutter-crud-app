@@ -15,7 +15,8 @@ class DashboardScreen extends StatelessWidget {
   Future<void> _logout(BuildContext context) async {
     await authController.logout();
     if (!context.mounted) return;
-    Navigator.pushNamedAndRemoveUntil(context, '/', (_) => false);
+    // LoginScreen is the first route (app home), so pop back to it.
+    Navigator.of(context).popUntil((route) => route.isFirst);
   }
 
   @override
